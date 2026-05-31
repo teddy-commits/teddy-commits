@@ -19,6 +19,8 @@ interface StoredClientData {
   lastVisit: string;
 }
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 const ClientChat: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -31,7 +33,7 @@ const ClientChat: React.FC = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [clientId, setClientId] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
- const typingTimeoutRef = useRef<number | undefined>(undefined);
+  const typingTimeoutRef = useRef<number | undefined>(undefined);
 
   // Load saved client data on component mount
   useEffect(() => {
@@ -75,7 +77,8 @@ const ClientChat: React.FC = () => {
     loadSavedClientData();
 
     // Connect to socket
-    const newSocket = io('http://localhost:5000', {
+    console.log('🔌 Connecting to backend at:', API_URL);
+    const newSocket = io(API_URL, {
       transports: ['websocket', 'polling'],
       reconnection: true
     });

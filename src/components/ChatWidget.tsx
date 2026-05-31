@@ -8,6 +8,8 @@ interface ChatMessage {
   timestamp: Date;
 }
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -19,7 +21,11 @@ const ChatWidget: React.FC = () => {
 
   useEffect(() => {
     // Connect to your backend
-    socketRef.current = io('http://localhost:5000');
+    console.log('🔌 Connecting to backend at:', API_URL);
+    socketRef.current = io(API_URL, {
+      transports: ['websocket', 'polling'],
+      reconnection: true
+    });
 
     socketRef.current.on('receive_message', (message: ChatMessage) => {
       setMessages((prev) => [...prev, message]);
@@ -39,7 +45,7 @@ const ChatWidget: React.FC = () => {
   }, [messages]);
 
   const sendMessage = () => {
-    if (inputMessage.trim() && socketRef.current) {
+    if (inputMessage.trim() && socketRef.current && isNameSet) {
       const message = {
         sender: senderName,
         text: inputMessage,

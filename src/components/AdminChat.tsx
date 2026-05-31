@@ -24,6 +24,7 @@ interface Message {
 }
 
 const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN || "teddybrothedeveloper";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const AdminChat: React.FC = () => {
   const [chats, setChats] = useState<Chat[]>([]);
@@ -38,8 +39,8 @@ const AdminChat: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log('🔄 Connecting to socket server...');
-    const newSocket = io('http://localhost:5000', {
+    console.log('🔄 Connecting to socket server at:', API_URL);
+    const newSocket = io(API_URL, {
       transports: ['websocket', 'polling'],
       reconnection: true,
       reconnectionAttempts: 5
@@ -132,7 +133,7 @@ const AdminChat: React.FC = () => {
   const loadChatMessages = async (chatId: string) => {
     try {
       console.log('Loading messages for chat:', chatId);
-      const response = await axios.get(`http://localhost:5000/api/admin/chats/${chatId}/messages`, {
+      const response = await axios.get(`${API_URL}/api/admin/chats/${chatId}/messages`, {
         headers: { 'admin-token': ADMIN_TOKEN }
       });
       console.log('Messages loaded:', response.data.length);
@@ -145,7 +146,7 @@ const AdminChat: React.FC = () => {
 
   const markMessagesAsRead = async (chatId: string) => {
     try {
-      await axios.post(`http://localhost:5000/api/admin/chats/${chatId}/read`, {}, {
+      await axios.post(`${API_URL}/api/admin/chats/${chatId}/read`, {}, {
         headers: { 'admin-token': ADMIN_TOKEN }
       });
     } catch (error) {
@@ -182,7 +183,7 @@ const AdminChat: React.FC = () => {
 
   const archiveChat = async (chatId: string) => {
     try {
-      await axios.post(`http://localhost:5000/api/admin/chats/${chatId}/archive`, {}, {
+      await axios.post(`${API_URL}/api/admin/chats/${chatId}/archive`, {}, {
         headers: { 'admin-token': ADMIN_TOKEN }
       });
       setChats(prev => prev.filter(chat => chat._id !== chatId));
@@ -217,6 +218,9 @@ const AdminChat: React.FC = () => {
           <h2>Admin Access</h2>
           <p style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
             Socket Status: {connectionStatus}
+          </p>
+          <p style={{ fontSize: '11px', color: '#666', marginBottom: '10px' }}>
+            Backend URL: {API_URL}
           </p>
           <input 
             type="password" 
