@@ -10,7 +10,7 @@ import { servicesData, projectsData, socialLinks } from './data/portfolioData';
 import './App.css';
 
 // Get admin secret from environment variables
-const ADMIN_SECRET_PATH = import.meta.env.VITE_ADMIN_SECRET || "teddybrothedeveloper";
+const ADMIN_SECRET_PATH = import.meta.env.VITE_ADMIN_TOKEN || "teddybrothedeveloper";
 
 // Main Portfolio Component
 function Portfolio() {
