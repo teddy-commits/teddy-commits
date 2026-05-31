@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ServiceCard from './components/ServiceCard';
@@ -10,7 +10,7 @@ import { servicesData, projectsData, socialLinks } from './data/portfolioData';
 import './App.css';
 
 // Get admin secret from environment variables
-const ADMIN_SECRET_PATH = import.meta.env.VITE_ADMIN_SECRET || "xK9mP2vL5nQ8rT1wY4bZ7cA3dF6gH9jM";
+const ADMIN_SECRET_PATH = import.meta.env.VITE_ADMIN_SECRET || "teddybrothedeveloper";
 
 // Main Portfolio Component
 function Portfolio() {
@@ -125,17 +125,29 @@ function Portfolio() {
   );
 }
 
+// Debug component to show current route
+function DebugInfo() {
+  const location = useLocation();
+  console.log('Current path:', location.pathname);
+  console.log('Admin secret path:', ADMIN_SECRET_PATH);
+  console.log('Should match?', location.pathname === `/${ADMIN_SECRET_PATH}`);
+  return null;
+}
+
 // Main App with Routes
 function App() {
   return (
-    <Routes>
-      {/* Admin route with secret path */}
-      <Route path={`/${ADMIN_SECRET_PATH}`} element={<AdminPanel />} />
-      {/* Main portfolio route */}
-      <Route path="/" element={<Portfolio />} />
-      {/* Catch all other routes - redirect to home */}
-      <Route path="*" element={<Portfolio />} />
-    </Routes>
+    <>
+      <DebugInfo />
+      <Routes>
+        {/* Admin route with secret path */}
+        <Route path={`/${ADMIN_SECRET_PATH}`} element={<AdminPanel />} />
+        {/* Main portfolio route */}
+        <Route path="/" element={<Portfolio />} />
+        {/* Catch all other routes - redirect to home */}
+        <Route path="*" element={<Portfolio />} />
+      </Routes>
+    </>
   );
 }
 
