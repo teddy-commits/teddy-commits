@@ -1,0 +1,86 @@
+.admin-panel {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+}
+
+.admin-header {
+  background: #0f172a;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #334155;
+}
+
+.admin-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.admin-header small {
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+.exit-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.exit-btn:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-tabs button {
+  padding: 0.75rem 1.5rem;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-tabs button:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.admin-tabs button.active {
+  background: #3b82f6;
+  color: white;
+}
+
+.admin-content {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Make sure AdminChat and AdminMessages fit properly */
+.admin-content > div {
+  height: 100%;
+  overflow: auto;
+}

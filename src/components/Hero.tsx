@@ -10,12 +10,13 @@ const Hero: React.FC = () => {
           </div>
           <h1>
             Tewodros Mekonen<br />
-            <span className="highlight">Software Developer</span> & Creative Engineer
+            <span className="highlight">Full-Stack Developer</span>
           </h1>
-          <div className="hero-title">Full-Stack • Mobile • Graphics Design</div>
+          <div className="hero-title">Java Spring Boot • React • Express.js</div>
           <p className="hero-desc">
-            I build complex web apps, backend systems, cross-platform mobile apps, and bring ideas to life 
-            with modern design & animation. Also crafting stunning visual identities as a graphics designer.
+            I build robust backend systems with Spring Boot and Node.js/Express, 
+            create responsive frontends with React, and develop cross-platform mobile apps. 
+            Passionate about clean code, scalable architecture, and delivering real business value.
           </p>
           <div className="btn-group">
             <a href="#projects" className="btn-primary" onClick={(e) => {

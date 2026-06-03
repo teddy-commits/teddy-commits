@@ -31,7 +31,10 @@ const Navbar: React.FC = () => {
           <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}>Home</a>
           <a href="#services" onClick={(e) => { e.preventDefault(); scrollToSection('services'); }}>Expertise</a>
           <a href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}>Work</a>
-          <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a>
+          <a href="/contact" onClick={(e) => {
+  e.preventDefault();
+  window.location.href = '/contact';
+}}>Contact</a>
           <a href="#" className="btn-resume" onClick={handleResumeClick}>
             <i className="fas fa-paperclip"></i> Resume
           </a>

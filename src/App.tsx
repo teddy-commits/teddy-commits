@@ -8,6 +8,7 @@ import ClientChat from './components/ClientChat';
 import AdminPanel from './pages/AdminPanel';
 import { servicesData, projectsData, socialLinks } from './data/portfolioData';
 import './App.css';
+import ContactPage from './components/ContactPage';
 
 // Get admin secret from environment variables
 const ADMIN_SECRET_PATH = import.meta.env.VITE_ADMIN_TOKEN || "teddybrothedeveloper";
@@ -146,6 +147,7 @@ function App() {
         <Route path="/" element={<Portfolio />} />
         {/* Catch all other routes - redirect to home */}
         <Route path="*" element={<Portfolio />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </>
   );
